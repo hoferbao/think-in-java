@@ -1,2 +1,2 @@
 # think-in-java
-java basic project
+Java basic project
