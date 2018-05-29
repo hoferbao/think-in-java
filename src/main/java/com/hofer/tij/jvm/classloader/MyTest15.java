@@ -7,16 +7,12 @@ package com.hofer.tij.jvm.classloader;
 public class MyTest15 {
     public static void main(String[] args) {
         String[] strings = new String[2];
-        System.out.println(strings.getClass().getClassLoader());
-
-        System.out.println("1.------");
+        System.out.println("new String[2].getClass().getClassLoader()=" + strings.getClass().getClassLoader());
 
         MyTest15[] myTest15s = new MyTest15[2];
-        System.out.println(myTest15s.getClass().getClassLoader());
-
-        System.out.println("2.------");
+        System.out.println("new MyTest15[2].getClass().getClassLoader()=" + myTest15s.getClass().getClassLoader());
 
         int[] ints = new int[2];
-        System.out.println(ints.getClass().getClassLoader());
+        System.out.println("new int[2].getClass().getClassLoader()=" + ints.getClass().getClassLoader());
     }
 }
