@@ -1,8 +1,8 @@
-package com.hofer.tij.jvm.classloader;
+package com.hofer.tij.jvm.ssy.classloader;
 
 /**
  * @author hofer.bhf
- * created on 2018/05/19 5:39 PM
+ * created on classloader/05/19 5:39 PM
  */
 public class MyTest15 {
     public static void main(String[] args) {
