@@ -1,5 +1,8 @@
 package com.hofer.tij.util;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -8,7 +11,18 @@ import java.util.Date;
  */
 public class DateUtil {
     public static void main(String[] args) {
-        System.out.println(getDateFromMilliseconds(1527647870033L));
+        dateTimeFormatter();
+    }
+
+    private static void dateTimeFormatter() {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        System.out.println(dateFormat.format(date));
+
+        LocalDate localDate = LocalDate.now();
+        localDate = localDate.plusDays(1);
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        System.out.println(df.format(localDate));
     }
 
     /**
