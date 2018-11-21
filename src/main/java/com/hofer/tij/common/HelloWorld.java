@@ -21,5 +21,6 @@ public class HelloWorld {
         System.out.println((userTag3 & SUPPLIER) == SUPPLIER);
         System.out.println((userTag4 & BRAND_SELLER) == BRAND_SELLER);
         boolean isSupplier = ((userTag3 & SUPPLIER) == SUPPLIER) || ((userTag4 & BRAND_SELLER) == BRAND_SELLER);
+        System.out.println(isSupplier);
     }
 }
