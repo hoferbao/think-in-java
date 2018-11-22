@@ -1,24 +1,27 @@
-package com.hofer.tij.algo.bloom;
+package com.hofer.tij.playground.shield.v1;
 
 import java.util.BitSet;
 
-public class SimpleBloomFilter {
+/**
+ * @author hofer.bhf
+ * created on 2018/11/22 4:18 PM
+ */
+public class BloomFilter {
+    private static final int   DEFAULT_SIZE = 2 << 24;
+    private static final int[] seeds        = new int[] {7, 11, 13, 31, 37, 61,};
 
-    private static final int DEFAULT_SIZE = 2 << 24;
-    private static final int[] seeds = new int[]{7, 11, 13, 31, 37, 61,};
-
-    private BitSet bits = new BitSet(DEFAULT_SIZE);
+    private BitSet       bits = new BitSet(DEFAULT_SIZE);
     private SimpleHash[] func = new SimpleHash[seeds.length];
 
     public static void main(String[] args) {
         String value = "hofer";
-        SimpleBloomFilter filter = new SimpleBloomFilter();
+        BloomFilter filter = new BloomFilter();
         System.out.println(filter.contains(value));
         filter.add(value);
         System.out.println(filter.contains(value));
     }
 
-    public SimpleBloomFilter() {
+    public BloomFilter() {
         for (int i = 0; i < seeds.length; i++) {
             func[i] = new SimpleHash(DEFAULT_SIZE, seeds[i]);
         }
@@ -61,5 +64,4 @@ public class SimpleBloomFilter {
         }
 
     }
-
 }
