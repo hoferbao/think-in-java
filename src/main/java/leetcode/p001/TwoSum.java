@@ -1,5 +1,8 @@
 package leetcode.p001;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * https://leetcode-cn.com/problems/two-sum/
  *
@@ -10,8 +13,26 @@ public class TwoSum {
     public static void main(String[] args) {
         int[] nums = new int[]{2, 7, 11, 15};
         int target = 9;
-        int[] result = twoSum2(nums, target);
+        int[] result = twoSum3(nums, target);
         System.out.println("[" + result[0] + "," + result[1] + "]");
+    }
+
+    public static int[] twoSum3(int[] nums, int target) {
+        Map<Integer, Integer> numsMap = new HashMap<>(nums.length);
+        for (int i = 0; i < nums.length; i++) {
+            numsMap.put(nums[i], i);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            Integer rest = target - nums[i];
+            if (numsMap.containsKey(rest)) {
+                int j = numsMap.get(rest);
+                if (i != j) {
+                    return new int[]{i, j};
+
+                }
+            }
+        }
+        return null;
     }
 
     public static int[] twoSum2(int[] nums, int target) {
