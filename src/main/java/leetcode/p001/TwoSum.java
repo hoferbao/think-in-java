@@ -13,8 +13,20 @@ public class TwoSum {
     public static void main(String[] args) {
         int[] nums = new int[]{2, 7, 11, 15};
         int target = 9;
-        int[] result = twoSum3(nums, target);
+        int[] result = twoSum4(nums, target);
         System.out.println("[" + result[0] + "," + result[1] + "]");
+    }
+
+    public static int[] twoSum4(int[] nums, int target) {
+        Map<Integer, Integer> numsMap = new HashMap<>(nums.length);
+        for (int i = 0; i < nums.length; i++) {
+            Integer rest = target - nums[i];
+            if (numsMap.containsKey(rest)) {
+                return new int[]{numsMap.get(rest), i};
+            }
+            numsMap.put(nums[i],i);
+        }
+        return null;
     }
 
     public static int[] twoSum3(int[] nums, int target) {
