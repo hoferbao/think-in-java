@@ -6,20 +6,19 @@ package com.hofer.tij.common;
  */
 public class PlayGround {
     public static void main(String[] args) {
-        System.out.println(11);
-        helloKitty();
-        System.out.println(22);
+        Boolean x = null;
+        System.out.println(toHexString("\001"));
     }
 
-    private static void helloKitty() {
-        try {
-            System.out.println(1);
-            System.out.println(1 / 0);
-        } catch (Exception e) {
-            System.out.println(e);
-            throw new RuntimeException();
-        } finally {
-            System.out.println(2);
+    public static String toHexString(String s)
+    {
+        String str="";
+        for (int i=0;i<s.length();i++)
+        {
+            int ch = (int)s.charAt(i);
+            String s4 = Integer.toHexString(ch);
+            str = str + s4;
         }
+        return str;
     }
 }
