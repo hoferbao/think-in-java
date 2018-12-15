@@ -1,6 +1,6 @@
 package com.taobao.shield;
 
-import com.taobao.shield.ac.v1.ACDoubleArrayTrie;
+import com.taobao.shield.ac.v1.AcDoubleArrayTrie;
 import junit.framework.TestCase;
 
 import java.io.*;
@@ -10,10 +10,15 @@ import java.util.*;
  * @author hofer.bhf
  * created on 2018/12/15 2:30 PM
  */
-public class ACDoubleArrayTrieTest extends TestCase {
-    private ACDoubleArrayTrie<String> buildASimpleACDoubleArrayTrie() {
+public class AcDoubleArrayTrieTest extends TestCase {
+    public void testSimple() {
+        AcDoubleArrayTrie<String> acdat = buildASimpleACDoubleArrayTrie();
+        validateASimpleACDoubleArrayTrie(acdat);
+    }
+
+    private AcDoubleArrayTrie<String> buildASimpleACDoubleArrayTrie() {
         // Collect test data set
-        TreeMap<String, String> map = new TreeMap<String, String>();
+        TreeMap<String, String> map = new TreeMap<>();
         String[] keyArray = new String[]
                 {
                         "hers",
@@ -24,31 +29,24 @@ public class ACDoubleArrayTrieTest extends TestCase {
         for (String key : keyArray) {
             map.put(key, key);
         }
-        // Build an ACDoubleArrayTrie
-        ACDoubleArrayTrie<String> acdat = new ACDoubleArrayTrie<String>();
+        // Build an AcDoubleArrayTrie
+        AcDoubleArrayTrie<String> acdat = new AcDoubleArrayTrie<>();
         acdat.build(map);
         return acdat;
     }
 
-    private void validateASimpleACDoubleArrayTrie(ACDoubleArrayTrie<String> acdat) {
+    private void validateASimpleACDoubleArrayTrie(AcDoubleArrayTrie<String> acdat) {
         // Test it
         final String text = "uhers";
-        acdat.parseText(text, new ACDoubleArrayTrie.IHit<String>() {
-            @Override
-            public void hit(int begin, int end, String value) {
-                System.out.printf("[%d:%d]=%s\n", begin, end, value);
-                assertEquals(text.substring(begin, end), value);
-            }
+        acdat.parseText(text, (begin, end, value) -> {
+            System.out.printf("[%d:%d]=%s\n", begin, end, value);
+            assertEquals(text.substring(begin, end), value);
         });
         // Or simply use
-        List<ACDoubleArrayTrie.Hit<String>> wordList = acdat.parseText(text);
+        List<AcDoubleArrayTrie.Hit<String>> wordList = acdat.parseText(text);
         System.out.println(wordList);
     }
 
-    public void testBuildAndParseSimply() throws Exception {
-        ACDoubleArrayTrie<String> acdat = buildASimpleACDoubleArrayTrie();
-        validateASimpleACDoubleArrayTrie(acdat);
-    }
 
     public void testBuildAndParseWithBigFile() throws Exception {
         // Load test data from disk
@@ -61,11 +59,11 @@ public class ACDoubleArrayTrieTest extends TestCase {
         for (String key : dictionary) {
             map.put(key, key);
         }
-        // Build an ACDoubleArrayTrie
-        ACDoubleArrayTrie<String> acdat = new ACDoubleArrayTrie<String>();
+        // Build an AcDoubleArrayTrie
+        AcDoubleArrayTrie<String> acdat = new AcDoubleArrayTrie<String>();
         acdat.build(map);
         // Test it
-        acdat.parseText(text, new ACDoubleArrayTrie.IHit<String>() {
+        acdat.parseText(text, new AcDoubleArrayTrie.IHit<String>() {
             @Override
             public void hit(int begin, int end, String value) {
                 assertEquals(text.substring(begin, end), value);
@@ -73,7 +71,7 @@ public class ACDoubleArrayTrieTest extends TestCase {
         });
     }
 
-    private static class CountHits implements ACDoubleArrayTrie.IHitCancellable<String> {
+    private static class CountHits implements AcDoubleArrayTrie.IHitCancellable<String> {
         private int count;
         private boolean countAll;
 
@@ -98,7 +96,7 @@ public class ACDoubleArrayTrieTest extends TestCase {
         map.put("space", 1);
         map.put("keyword", 2);
         map.put("ch", 3);
-        ACDoubleArrayTrie<Integer> trie = new ACDoubleArrayTrie<Integer>();
+        AcDoubleArrayTrie<Integer> trie = new AcDoubleArrayTrie<Integer>();
         trie.build(map);
 
         assertTrue(trie.matches("space"));
@@ -118,10 +116,10 @@ public class ACDoubleArrayTrieTest extends TestCase {
         map.put("space", 1);
         map.put("keyword", 2);
         map.put("ch", 3);
-        ACDoubleArrayTrie<Integer> trie = new ACDoubleArrayTrie<Integer>();
+        AcDoubleArrayTrie<Integer> trie = new AcDoubleArrayTrie<Integer>();
         trie.build(map);
 
-        ACDoubleArrayTrie.Hit<Integer> hit = trie.findFirst("space");
+        AcDoubleArrayTrie.Hit<Integer> hit = trie.findFirst("space");
         assertEquals(0, hit.begin);
         assertEquals(5, hit.end);
         assertEquals(1, hit.value.intValue());
@@ -148,8 +146,8 @@ public class ACDoubleArrayTrieTest extends TestCase {
         for (String key : keyArray) {
             map.put(key, key);
         }
-        // Build an ACDoubleArrayTrie
-        ACDoubleArrayTrie<String> acdat = new ACDoubleArrayTrie<String>();
+        // Build an AcDoubleArrayTrie
+        AcDoubleArrayTrie<String> acdat = new AcDoubleArrayTrie<String>();
         acdat.build(map);
         // count matches
         String haystack = "sfwtfoowercwbarqwrcq";
@@ -191,19 +189,19 @@ public class ACDoubleArrayTrieTest extends TestCase {
         String text = loadText(textPath);
         // Build a ahoCorasickNaive implemented by robert-bor
 
-        // Build a ACDoubleArrayTrie implemented by hankcs
-        ACDoubleArrayTrie<String> ACDoubleArrayTrie = new ACDoubleArrayTrie<String>();
+        // Build a AcDoubleArrayTrie implemented by hankcs
+        AcDoubleArrayTrie<String> AcDoubleArrayTrie = new AcDoubleArrayTrie<String>();
         TreeMap<String, String> dictionaryMap = new TreeMap<String, String>();
         for (String word : dictionary) {
             dictionaryMap.put(word, word);  // we use the same text as the property of a word
         }
-        ACDoubleArrayTrie.build(dictionaryMap);
+        AcDoubleArrayTrie.build(dictionaryMap);
         // Let's test the speed of the two Aho-Corasick automata
         System.out.printf("Parsing document which contains %d characters, with a dictionary of %d words.\n", text.length(), dictionary.size());
         long start = System.currentTimeMillis();
         long costTimeNaive = System.currentTimeMillis() - start;
         start = System.currentTimeMillis();
-        ACDoubleArrayTrie.parseText(text, new ACDoubleArrayTrie.IHit<String>() {
+        AcDoubleArrayTrie.parseText(text, new AcDoubleArrayTrie.IHit<String>() {
             @Override
             public void hit(int begin, int end, String value) {
 
@@ -218,7 +216,7 @@ public class ACDoubleArrayTrieTest extends TestCase {
     }
 
     /**
-     * Compare my ACDoubleArrayTrie with robert-bor's aho-corasick, notice that robert-bor's aho-corasick is
+     * Compare my AcDoubleArrayTrie with robert-bor's aho-corasick, notice that robert-bor's aho-corasick is
      * compiled under jdk1.8, so you will need jdk1.8 to run this test<br>
      * To avoid JVM wasting time on allocating memory, please use -Xms512m -Xmx512m -Xmn256m .
      *
@@ -230,7 +228,7 @@ public class ACDoubleArrayTrieTest extends TestCase {
     }
 
     public void testSaveAndLoad() throws Exception {
-        ACDoubleArrayTrie<String> acdat = buildASimpleACDoubleArrayTrie();
+        AcDoubleArrayTrie<String> acdat = buildASimpleACDoubleArrayTrie();
         final String tmpPath = System.getProperty("java.io.tmpdir").replace("\\\\", "/") + "/acdat.tmp";
         System.out.println("Saving acdat to: " + tmpPath);
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(tmpPath));
@@ -238,7 +236,7 @@ public class ACDoubleArrayTrieTest extends TestCase {
         out.close();
         System.out.println("Loading acdat from: " + tmpPath);
         ObjectInputStream in = new ObjectInputStream(new FileInputStream(tmpPath));
-        acdat = (ACDoubleArrayTrie<String>) in.readObject();
+        acdat = (AcDoubleArrayTrie<String>) in.readObject();
         validateASimpleACDoubleArrayTrie(acdat);
     }
 }

@@ -10,7 +10,7 @@ import java.util.*;
  * @author hofer.bhf
  * created on 2018/12/15 2:05 PM
  */
-public class ACDoubleArrayTrie<V> implements Serializable {
+public class AcDoubleArrayTrie<V> implements Serializable {
     /**
      * check array of the Double Array Trie structure
      */
@@ -768,7 +768,7 @@ public class ACDoubleArrayTrie<V> implements Serializable {
             for (int i = 0; i < output.length; ++i) {
                 output[i] = it.next();
             }
-            ACDoubleArrayTrie.this.output[targetState.getIndex()] = output;
+            AcDoubleArrayTrie.this.output[targetState.getIndex()] = output;
         }
 
         private void buildDoubleArrayTrie(int keySize) {
