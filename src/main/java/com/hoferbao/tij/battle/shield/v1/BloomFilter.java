@@ -1,4 +1,4 @@
-package com.hofer.tij.battle.shield.v1;
+package com.hoferbao.tij.battle.shield.v1;
 
 import java.util.BitSet;
 

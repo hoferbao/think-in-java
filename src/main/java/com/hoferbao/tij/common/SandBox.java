@@ -1,4 +1,4 @@
-package com.hofer.tij.common;
+package com.hoferbao.tij.common;
 
 /**
  * @author hofer.bhf

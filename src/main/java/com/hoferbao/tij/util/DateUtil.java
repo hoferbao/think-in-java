@@ -1,4 +1,4 @@
-package com.hofer.tij.util;
+package com.hoferbao.tij.util;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
