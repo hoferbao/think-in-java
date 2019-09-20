@@ -3,7 +3,7 @@ package com.hofer.tij.jvm.ssy.bytecode;
 /**
  * @author hofer.bhf
  * created on 2019/9/12 11:06 AM
- *
+ * $ cd out/production/classes
  * $ javap -c com.hofer.tij.jvm.ssy.bytecode.MyTest1
  * Compiled from "MyTest1.java"
  * public class com.hofer.tij.jvm.ssy.bytecode.MyTest1 {
