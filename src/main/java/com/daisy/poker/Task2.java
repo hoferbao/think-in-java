@@ -33,9 +33,9 @@ public class Task2 {
 class Player extends Thread {
     private Task1 task1;//扑克
     private Player next;//下一家
-    public List<Integer> pokersInHand = new ArrayList<>(); //发到手的牌
+    private List<Integer> pokersInHand = new ArrayList<>(); //发到手的牌
 
-    public Player(String name, Task1 task1) {
+    Player(String name, Task1 task1) {
         this.setName(name);
         this.task1 = task1;
     }
@@ -45,11 +45,11 @@ class Player extends Thread {
     }
 
 
-    public boolean biggerThan50() {
+    private boolean biggerThan50() {
         return getTotalPoint() > 50;
     }
 
-    public String getAllPoker() {
+    private String getAllPoker() {
         StringBuilder allPoker = new StringBuilder();
         for (Integer poker : pokersInHand) {
             allPoker = allPoker.append(Task1.getPokerName(poker)).append(" ");
@@ -57,7 +57,7 @@ class Player extends Thread {
         return allPoker.toString();
     }
 
-    public int getTotalPoint() {
+    private int getTotalPoint() {
         int allPoints = 0;
         for (Integer poker : pokersInHand) {
             allPoints = allPoints + Task1.getPokerPoint(poker);
@@ -79,7 +79,7 @@ class Player extends Thread {
         pokersInHand.add(poker);
         System.out.println(getName() + " get " + Task1.getPokerName(poker));
         if (biggerThan50()) {
-            System.out.println(getName() + " win! " + " pokersInHand = " + getAllPoker() + " points = " + getTotalPoint());
+            System.out.println(getName() + " win! " + " pokersInHand = [" + getAllPoker() + "] points = " + getTotalPoint());
             System.exit(0);
         }
         if (this.next.getState() == State.NEW) {//第一轮 下一个线程如果还没开始则启动它
