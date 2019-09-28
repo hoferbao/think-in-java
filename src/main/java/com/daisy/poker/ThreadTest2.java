@@ -8,10 +8,10 @@ public class ThreadTest2 {
      */
     public static void main(String[] args) {
         PokerSender pokers = new PokerSender();
-        Player a = new Player("A", pokers);
-        Player b = new Player("B", pokers);
-        Player c = new Player("C", pokers);
-        Player d = new Player("D", pokers);
+        Players a = new Players("A", pokers);
+        Players b = new Players("B", pokers);
+        Players c = new Players("C", pokers);
+        Players d = new Players("D", pokers);
         a.setNext(b);
         b.setNext(c);
         c.setNext(d);
@@ -67,17 +67,17 @@ class PokerSender {
 
 
 //线程(也就是玩家)
-class Player extends Thread {
+class Players extends Thread {
     private PokerSender pokers;//扑克
-    private Player next;//下一家
+    private Players next;//下一家
     public List<Integer> pokersInHand = new ArrayList<Integer>(); //发到手的牌
 
-    public Player(String name, PokerSender poker) {
+    public Players(String name, PokerSender poker) {
         this.setName(name);
         this.pokers = poker;
     }
 
-    public void setNext(Player next) {
+    public void setNext(Players next) {
         this.next = next;
     }
 
