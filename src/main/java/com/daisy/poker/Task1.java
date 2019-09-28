@@ -44,11 +44,6 @@ public class Task1 {
         return POINTS_ARRAY[poker];
     }
 
-
-    public List<Integer> getAllPokers() {
-        return allPokers;
-    }
-
     public synchronized int getOnePoker() {//同步发牌
         if (index >= TOTAL_POKER_NUM) {
             throw new RuntimeException("no pokers");
@@ -64,16 +59,4 @@ public class Task1 {
         Collections.shuffle(allPokers, rand);
 
     }
-
-    public static void main(String[] args) throws Exception {
-        Task1 task1 = new Task1();
-        System.out.println(task1.getAllPokers().toString());
-        for (; ; ) {
-            Thread.sleep(1);
-            System.out.println(task1.getOnePoker());
-        }
-
-    }
-
-
 }
