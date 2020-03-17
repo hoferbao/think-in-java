@@ -9,7 +9,7 @@ import java.util.Date;
  * @author hofer.bhf
  * created on 2018/05/31 4:01 PM
  */
-public class DateUtil {
+public class DateUtils {
     public static void main(String[] args) {
         dateTimeFormatter();
     }
