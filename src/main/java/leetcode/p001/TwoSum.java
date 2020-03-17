@@ -11,9 +11,9 @@ import java.util.Map;
  */
 public class TwoSum {
     public static void main(String[] args) {
-        int[] nums = new int[]{2, 7, 11, 15};
+        int[] numbers = new int[]{2, 7, 11, 15};
         int target = 9;
-        int[] result = twoSum4(nums, target);
+        int[] result = twoSum4(numbers, target);
         System.out.println("[" + result[0] + "," + result[1] + "]");
     }
 
