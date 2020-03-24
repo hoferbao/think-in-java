@@ -6,19 +6,6 @@ package com.hoferbao.tij.common;
  */
 public class SandBox {
     public static void main(String[] args) {
-        Boolean x = null;
-        System.out.println(toHexString("\001"));
-    }
-
-    public static String toHexString(String s)
-    {
-        String str="";
-        for (int i=0;i<s.length();i++)
-        {
-            int ch = (int)s.charAt(i);
-            String s4 = Integer.toHexString(ch);
-            str = str + s4;
-        }
-        return str;
+        System.out.println(1 << 2);
     }
 }
