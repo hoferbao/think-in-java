@@ -22,6 +22,7 @@ public class FutureTimeout {
         } catch (TimeoutException e) {
             System.out.println("timeout");
         }
+        executorService.shutdown();
     }
 
 }
