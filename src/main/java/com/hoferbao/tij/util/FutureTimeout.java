@@ -8,9 +8,13 @@ import java.util.concurrent.*;
  */
 public class FutureTimeout {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
         Callable<String> task = () -> {
-            Thread.sleep(2000);
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return "success";
         };
 
@@ -19,7 +23,7 @@ public class FutureTimeout {
         try {
             String result = future.get(1, TimeUnit.SECONDS);
             System.out.println("result:" + result);
-        } catch (TimeoutException e) {
+        } catch (Exception e) {
             System.out.println("timeout");
         }
         executorService.shutdown();
