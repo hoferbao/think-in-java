@@ -1,4 +1,4 @@
-package com.hoferbao.bitcoin;
+package com.hofer.bitcoin;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.bouncycastle.crypto.digests.RIPEMD160Digest;

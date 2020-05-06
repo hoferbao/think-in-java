@@ -1,4 +1,4 @@
-package com.hoferbao.bitcoin;
+package com.hofer.bitcoin;
 
 import org.bouncycastle.crypto.digests.SHA256Digest;
 

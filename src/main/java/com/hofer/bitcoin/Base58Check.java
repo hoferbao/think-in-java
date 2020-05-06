@@ -1,4 +1,4 @@
-package com.hoferbao.bitcoin;
+package com.hofer.bitcoin;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
